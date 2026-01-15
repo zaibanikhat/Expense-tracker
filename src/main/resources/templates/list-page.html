@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>My Expenses</title>
+
+    <!-- Fonts & CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+        :root {
+            --primary-accent: #1abc9c;
+            --primary-gradient: linear-gradient(135deg, #1abc9c, #16a085);
+            --secondary-text: #64748b;
+            --danger: #ef4444;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.08);
+            --card-shadow-hover: 0 18px 25px rgba(0,0,0,0.12);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f4f8, #e2e8f0);
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+        }
+
+        /* ===== HEADER ===== */
+        .page-header {
+            padding: 20px 0 12px;   /* tightened spacing */
+        }
+
+        .page-header h1 {
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .page-header p {
+            color: var(--secondary-text);
+            margin: 0;
+        }
+
+        /* ===== GRID FIX ===== */
+        .row.g-4 > [class^="col-"] {
+            display: flex;
+        }
+
+        .row.g-4 > [class^="col-"] > .expense-card {
+            width: 100%;
+        }
+
+        /* ===== EXPENSE CARD ===== */
+        .expense-card {
+            background: #fff;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .expense-card::before {
+            content: '';
+            height: 4px;
+            background: var(--primary-gradient);
+            width: 100%;
+        }
+
+        .expense-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow-hover);
+            border-color: rgba(26,188,156,0.4);
+        }
+
+        /* ===== CARD HEADER ===== */
+        .expense-card-header {
+            padding: 16px 20px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-pill {
+            background: linear-gradient(135deg, #d5f4e6, #a8e6cf);
+            color: #16a085;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        .amount-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        /* ===== META ===== */
+        .expense-meta {
+            padding: 0 20px;
+            display: flex;
+            gap: 18px;
+            font-size: 0.85rem;
+            color: var(--secondary-text);
+            margin-bottom: 6px;
+        }
+
+        .expense-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .expense-meta i {
+            color: var(--primary-accent);
+        }
+
+        /* ===== DESCRIPTION ===== */
+        .expense-desc {
+            padding: 0 20px;
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.4;
+            margin-top: 4px;
+            min-height: 2.8em;
+        }
+
+        /* ===== FOOTER ===== */
+        .expense-card-footer {
+            margin-top: auto;
+            padding: 14px 20px 18px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .action-link {
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 9px 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .edit-link {
+            color: #16a085;
+            border: 2px solid #16a085;
+            background: #ecfdf5;
+        }
+
+        .edit-link:hover {
+            background: #16a085;
+            color: #fff;
+        }
+
+        .delete-link {
+            color: var(--danger);
+            border: 2px solid var(--danger);
+            background: #fef2f2;
+        }
+
+        .delete-link:hover {
+            background: var(--danger);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR (ONLY Add Expense lives here) -->
+<div th:replace="fragments/navbar :: navbar('no','no','no','yes','yes','yes')"></div>
+
+<div class="container">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <h1>My Expenses</h1>
+        <p>Clear overview of your spending</p>
+    </div>
+
+    <!-- EXPENSE LIST -->
+    <div class="row g-4">
+
+        <div class="col-md-4" th:each="exp : ${expenseList}">
+            <div class="expense-card">
+
+                <!-- HEADER -->
+                <div class="expense-card-header">
+                    <span class="category-pill" th:text="${exp.categoryName}"></span>
+                    <span class="amount-text">₹ <span th:text="${exp.amount}"></span></span>
+                </div>
+
+                <!-- META -->
+                <div class="expense-meta">
+                    <span>
+                        <i class="fa fa-calendar"></i>
+                        <span th:text="${exp.date}"></span>
+                    </span>
+                    <span>
+                        <i class="fa fa-clock"></i>
+                        <span th:text="${exp.time}"></span>
+                    </span>
+                </div>
+
+                <!-- DESCRIPTION -->
+                <p class="expense-desc" th:text="${exp.description}"></p>
+
+                <!-- FOOTER -->
+                <div class="expense-card-footer">
+                    <a th:href="@{/showUpdate(expId=${exp.id})}" class="action-link edit-link">
+                        <i class="fa fa-pen"></i> Edit
+                    </a>
+                    <a th:href="@{/delete(expId=${exp.id})}"
+                       class="action-link delete-link"
+                       onclick="return confirm('Delete this expense?')">
+                        <i class="fa fa-trash"></i> Delete
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
