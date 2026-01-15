@@ -1,133 +1,58 @@
-# Expense-tracker
-Here’s a **clean, professional README.md** you can directly use for your project.
-It’s **resume + GitHub + recruiter friendly** and matches your tech stack and structure 👌
+![Language](https://img.shields.io/badge/language-Java%20-blue.svg)
+![Technologies](https://img.shields.io/badge/technologies-Spring_boot%20-green.svg)
+![Technologies](https://img.shields.io/badge/technologies-Spring_MVC%20-green.svg)
+![Technologies](https://img.shields.io/badge/technologies-Spring_Security%20-green.svg)
+![Technologies](https://img.shields.io/badge/technologies-Spring_Data_jpa%20-green.svg)
+![Technologies](https://img.shields.io/badge/technologies-Thymeleaf_&_Bootstrap%20-purple.svg)
 
----
+# Expenses-Tracker-WebApp
+## Overview
+The Expenses Tracker App is a robust financial management solution developed using cutting-edge technologies such as Spring Boot, Spring Security, and MySQL. With user authentication and authorization features, users can securely sign up, sign in, and perform CRUD operations on their expenses. The app's intuitive interface, powered by Thymeleaf and Bootstrap, ensures a seamless user experience. The filtering functionality allows users to efficiently organize and analyze their financial data. Explore the power of streamlined expense tracking and financial control with this feature-rich application.<br> (Screenshots below for more illustration)
 
-# 💰 Expense Tracker Application
+## Technologies Used
+- Java
+- Spring boot
+- Spring MVC
+- Spring Security
+- Spring Data (JPA)
+- MySQL
+- Thymeleaf
+- Bootstrap
 
-A full-stack **Expense Tracker Web Application** built using **Java, Spring Boot, Thymeleaf, Bootstrap, and MySQL**.
-The application helps users manage daily expenses, categorize spending, filter expenses, and view expense summaries through a clean and responsive UI.
+## Features
+- **User Authentication and Authorization:** Securely sign up, sign in, and access the app with built-in authentication and authorization.
+- **CRUD Operations:** Perform essential financial tracking actions such as adding, reading, updating, and deleting expenses.
+- **Filtering:** Utilize the filtering feature to efficiently sort and view expenses based on various criteria.
 
----
+## Getting Started
+1. **Clone the Repository:**
+`git clone https://github.com/your-username/expenses-tracker.git`
 
-## 🚀 Features
+2. **Configure Database:**
+Set up MySQL database and update the application.properties file with your database configuration.
 
-* ✅ User-friendly web interface using **Thymeleaf + Bootstrap**
-* ✅ Add, update, delete, and view expenses
-* ✅ Expense categorization
-* ✅ Filter expenses based on criteria
-* ✅ Expense overview and summaries
-* ✅ MVC architecture with clean separation of concerns
-* ✅ Persistent storage using **MySQL**
-* ✅ Responsive UI with reusable fragments (Navbar)
+3. **Build and Run:**
+Build the project using your preferred IDE or with Maven:
+`mvn clean install`.
 
----
+4. **Run the application:**
+`java -jar target/expenses-tracker.jar`.
 
-## 🛠️ Tech Stack
+5. **Access the App:**
+Open your web browser and navigate to `http://localhost:8080`.
 
-| Layer      | Technology                       |
-| ---------- | -------------------------------- |
-| Backend    | Java, Spring Boot                |
-| Web Layer  | Spring MVC, Thymeleaf            |
-| Frontend   | HTML, CSS, Bootstrap, JavaScript |
-| Database   | MySQL                            |
-| ORM        | Spring Data JPA                  |
-| Build Tool | Maven                            |
-| IDE        | IntelliJ IDEA / VS Code          |
+## ScreenShots
+![Example Image](screenshots/1.png) <br>
+![Example Image](screenshots/2-2.png) <br>
+![Example Image](screenshots/3-3.png) <br>
+![Example Image](screenshots/4-4.png) <br>
+![Example Image](screenshots/5-5.png) <br>
+![Example Image](screenshots/6-6.png) <br>
+![Example Image](screenshots/7.png) <br>
+![Example Image](screenshots/8.png) <br>
 
----
+## Contributions
+Contributions are welcome! If you find a bug or have suggestions for improvement, feel free to open an issue or create a pull request.
 
-## 🏗️ Project Architecture (MVC)
-
-```
-Controller → Service → Repository → Database
-            ↓
-        Thymeleaf Views
-```
-
-* **Controller**: Handles HTTP requests and responses
-* **Service**: Business logic layer
-* **Repository**: Database interaction using JPA
-* **Entity**: Database models
-* **DTO**: Data transfer between layers
-
----
-
-## 🗄️ Database Configuration
-
-Update `application.properties`:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/expense_tracker
-spring.datasource.username=root
-spring.datasource.password=your_password
-
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
-```
-
----
-
-## ▶️ How to Run the Application
-
-### Prerequisites
-
-* Java 17+
-* MySQL
-* Maven
-
-### Steps
-
-```bash
-git clone <repository-url>
-cd expense-tracker
-mvn clean install
-mvn spring-boot:run
-```
-
-Access the application at:
-
-```
-http://localhost:8080
-```
-
----
-
-## 🧪 Testing
-
-* Unit tests included using **Spring Boot Test**
-* Test entry point:
-
-```
-ExpensesTrackerApplicationTests.java
-```
-
----
-
-## 🔒 Best Practices Followed
-
-* Layered architecture (Controller → Service → Repository)
-* DTOs to avoid exposing entities directly
-* Reusable UI fragments
-* Clean and readable code structure
-* Separation of business logic and UI
-
----
-
-## 📌 Future Enhancements
-
-* 🔐 Spring Security (Authentication & Authorization)
-* 📊 Charts & analytics dashboard
-* 📱 Mobile responsiveness improvements
-* ☁️ Docker & Cloud deployment
-* 🔄 Pagination & sorting
-* 🧪 More test coverage
-
----
-
-## 👩‍💻 Author
-
-**Zaiba Nikhat**
-Java Backend Developer | Spring Boot | Microservices
+## License
+This project is licensed under the MIT License.
